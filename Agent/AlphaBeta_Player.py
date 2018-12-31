@@ -2,7 +2,7 @@ import math
 import copy
 import numpy as np
 from Game import Game
-class AlphaBeta_Player:
+class AlphaBeta_Player():
     def __init__(self,depth = 5):
         self.depth = depth
         self.move_list = ["r","l","u","d"]

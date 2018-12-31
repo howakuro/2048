@@ -9,6 +9,7 @@ import copy as cp
 from Agent.Montecarlo_Player import Montecarlo_Player
 from Agent.Random_Player import Random_Player
 from Agent.AlphaBeta_Player import AlphaBeta_Player
+from Agent.RuleBased_Player import RuleBased_Player
 
 # Chromeの起動と2048の起動
 browser = webdriver.Chrome()
@@ -58,11 +59,11 @@ def main(agent):
 
 if __name__ =="__main__":
     start = time.time()
-    agent = Random_Player()
+    agent = RuleBased_Player()
     main(agent)
     print_score()
     end = time.time()
     print("time:",end - start)
-    input()
+    input("")
     browser.quit()
     

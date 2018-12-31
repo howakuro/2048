@@ -1,7 +1,7 @@
 import numpy as np
 class RuleBased_Player():
     def __init__(self):
-        self.previous_board = None
+        self.previous_board = np.zeros((4,4))
         self.no_change_count = 0
         self.Key_List = ["d", "r"]
         self.i = 0
@@ -13,6 +13,8 @@ class RuleBased_Player():
                 move = "l"
             if self.no_change_count == 3:
                 move = "u"
+        else:
+            self.no_change_count = 0
         self.i += 1
         self.previous_board = np.copy(board)
         return move
