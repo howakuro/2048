@@ -1,6 +1,7 @@
 from Game import Game 
 from Agent.Montecarlo_Player import Montecarlo_Player
 from Agent.Random_Player import Random_Player
+from Agent.AlphaBeta_Player import AlphaBeta_Player
 
 def play_game(game, agent, show_board, show_score):
     key_flick = {"r":game.flick_right,"l":game.flick_left,"u":game.flick_up,"d":game.flick_down}
@@ -13,10 +14,10 @@ def play_game(game, agent, show_board, show_score):
         action = agent.select_action(game.board)
         if key_flick[action]():
             game.put_tile()
+            if show_score:
+                print(f'\nscore = {game.score}')
             if show_board:
                 print(game.board)
-            if show_score:
-                print(f'score = {game.score}')
 
 def simulater(agent = Random_Player(), simulation = 1, episode = 1, show_board = False, show_score = False):
     game = Game()
@@ -25,7 +26,7 @@ def simulater(agent = Random_Player(), simulation = 1, episode = 1, show_board =
             play_game(game, agent, show_board, show_score)
             
 def main():
-    agent_list = [Random_Player()]
+    agent_list = [AlphaBeta_Player(5)]
     for agent in agent_list:
         simulater(agent = agent, show_board=True, show_score=True)
 

@@ -12,7 +12,7 @@ class Game:
 
     def reset(self,board=None):
         self.board = np.zeros((SIZE,SIZE),dtype = int) if np.all(board == None) else np.copy(board)
-        self.score = 0
+        self.score = 0.0
     
     def move_left(self):
         moved = False
@@ -81,16 +81,23 @@ class Game:
         moved = self.move_left()
         self.rotate_left()
         return moved
-
     
     def playable(self):
         return any(flick(Game(self.board)) 
                    for flick in (Game.flick_left, Game.flick_right,Game.flick_up, Game.flick_down))
     
-    def put_tile(self):
+    def can_put_list(self):
         y,x = np.where(self.board == 0)
-        num = np.random.choice(np.arange(len(y)))
-        self.board[y[num]][x[num]] = np.random.choice((2, 4), p=[0.8, 0.2])
+        return y,x
+
+    def put_tile(self, pos = None):
+        if pos == None: 
+            y,x = self.can_put_list()
+            num = np.random.choice(np.arange(len(y)))
+            self.board[y[num]][x[num]] = np.random.choice((2, 4), p=[0.8, 0.2])
+        else:
+            y, x = pos
+            self.board[y][x] = np.random.choice((2, 4), p=[0.8, 0.2])
 
 def random_simulation(board = None):
         game = Game(board)
