@@ -27,7 +27,7 @@ def simulater(agent = Random_Player(), simulation = 1, episode = 1, show_board =
             play_game(game, agent, show_board, show_score)
             
 def main():
-    agent_list = [AlphaBeta_Player(5)]
+    agent_list = [RuleBased_Player()]
     for agent in agent_list:
         simulater(agent = agent, show_board=True, show_score=True)
 

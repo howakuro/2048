@@ -3,7 +3,7 @@ import copy
 import numpy as np
 from Game import Game
 class AlphaBeta_Player():
-    def __init__(self,depth = 5):
+    def __init__(self,depth = 3):
         self.depth = depth
         self.move_list = ["r","l","u","d"]
 
@@ -25,7 +25,7 @@ class AlphaBeta_Player():
         if not game.playable():
             return -float("inf")
         if depth == 0:
-            return self.evaluate(game) 
+            return game.score #self.evaluate(game) 
         if turn == "move":
             for flick in ["r","l","u","d"]:
                 copy_game = copy.deepcopy(game)
