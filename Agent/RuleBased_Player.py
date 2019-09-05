@@ -3,7 +3,7 @@ class RuleBased_Player():
     def __init__(self):
         self.previous_board = np.zeros((4,4))
         self.no_change_count = 0
-        self.Key_List = ["d", "r"]
+        self.Key_List = [1, 2]
         self.i = 0
     def select_action(self,board):
         move = self.Key_List[self.i % 2]

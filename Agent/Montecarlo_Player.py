@@ -1,4 +1,4 @@
-from Game import Game
+from environment.Game.Game import Game
 import numpy as np
 import random 
 from multiprocessing import Pool
@@ -8,7 +8,7 @@ import multiprocessing as multi
 class Montecarlo_Player():
     def __init__(self,sim_num = 100):
         self.sim_num = sim_num
-        self.move_list = ["r","l","u","d"]
+        self.move_list = [0,1,2,3]
 
     def random_sim(self,List):
         count = 1
@@ -22,9 +22,9 @@ class Montecarlo_Player():
         return count + game.score + np.max(game.board)
 
     def select_action(self,board):
-        can_move_list = np.array([flick(Game(board)) for flick in (Game.flick_right,Game.flick_left,Game.flick_up, Game.flick_down)])
+        can_move_list = np.array([flick(Game(board)) for flick in (Game.flick_up, Game.flick_down,Game.flick_right,Game.flick_left)])
         move_index = np.where(can_move_list == True)[0]
-        count = {"r":0,"l":0,"u":0,"d":0} 
+        count = {0:0,1:0,2:0,3:0} 
         for i in move_index:
             move = self.move_list[i]
             List = [[board,move] for j in range(self.sim_num)]

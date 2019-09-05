@@ -1,11 +1,11 @@
 import math
 import copy
 import numpy as np
-from Game import Game
+from environment.Game.Game import Game
 class AlphaBeta_Player():
     def __init__(self,depth = 3):
         self.depth = depth
-        self.move_list = ["r","l","u","d"]
+        self.move_list = [0,1,2,3]
 
     def evaluate(self,game):
         emptyCells = len(np.where(game.board == 0)[0])
@@ -27,7 +27,7 @@ class AlphaBeta_Player():
         if depth == 0:
             return game.score #self.evaluate(game) 
         if turn == "move":
-            for flick in ["r","l","u","d"]:
+            for flick in [0,1,2,3]:
                 copy_game = copy.deepcopy(game)
                 copy_game.flick(flick)
                 alpha = max((alpha, self.search(copy_game, depth-1, alpha, beta, "put") ) )
@@ -47,7 +47,7 @@ class AlphaBeta_Player():
     def select_action(self,board):
         can_move_list = np.array([flick(Game(board)) for flick in (Game.flick_right,Game.flick_left,Game.flick_up, Game.flick_down)])
         move_index = np.where(can_move_list == True)[0]
-        move_score = {"r":-float('inf'),"l":-float('inf'),"u":-float('inf'),"d":-float('inf')}
+        move_score = {0:-float('inf'),1:-float('inf'),2:-float('inf'),3:-float('inf')}
         for index in move_index:
             flick = self.move_list[index]
             copy_game = copy.deepcopy(Game(board))

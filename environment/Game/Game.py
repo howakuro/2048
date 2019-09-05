@@ -13,6 +13,10 @@ class Game:
     def reset(self,board=None):
         self.board = np.zeros((SIZE,SIZE),dtype = int) if np.all(board == None) else np.copy(board)
         self.score = 0.0
+        if np.all(board == None):
+            self.put_tile()
+            self.put_tile()
+        
     
     def move_left(self):
         moved = False
@@ -50,14 +54,14 @@ class Game:
     
     
     def flick(self,key):
-        if key == "u":
-            self.flick_up()
-        elif key == "d":
-            self.flick_down()
-        elif key == "r":
-            self.flick_right()
-        elif key == "l":
-            self.flick_left()
+        if key == 0: #上キー
+            return self.flick_up()
+        elif key == 1: #下キー
+            return self.flick_down()
+        elif key == 2: #右キー
+            return self.flick_right()
+        elif key == 3:
+            return self.flick_left() #左キー
    
     def flick_left(self):
         moved = self.move_left()
