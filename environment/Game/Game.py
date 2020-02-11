@@ -1,6 +1,5 @@
 import random
 import os
-from numba import jit 
 import numpy as np
 import copy as cp
 SIZE = 4
