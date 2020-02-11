@@ -6,12 +6,12 @@ SIZE = 4
 DIGITS = 4
 
 class Game:
-    def __init__(self, board=None):
-        self.reset(board)
+    def __init__(self, board=None, score=None):
+        self.reset(board, score)
 
-    def reset(self,board=None):
+    def reset(self,board=None, score=None):
         self.board = np.zeros((SIZE,SIZE),dtype = int) if np.all(board == None) else np.copy(board)
-        self.score = 0.0
+        self.score = 0.0 if score == None else score
         if np.all(board == None):
             self.put_tile()
             self.put_tile()
