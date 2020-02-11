@@ -1,6 +1,7 @@
 import gym
 import Agent
-def main():
+
+if __name__ == "__main__":
     for i in range(1):
         env = gym.make('Gym_2048-v0')
         agent = Agent.Random_Player()
@@ -12,6 +13,3 @@ def main():
             obs, reward, done, info = env.step(action)
             env.render()
             
-
-
-main()
